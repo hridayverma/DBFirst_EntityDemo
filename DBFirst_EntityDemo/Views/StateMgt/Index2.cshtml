@@ -1,0 +1,20 @@
+﻿@using DBFirst_EntityDemo.Controllers
+
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+@*<h3>Data from ViewBag</h3>
+    Employee Id: @ViewBag.Employee.Id
+
+    <h3>Data from ViewData</h3>
+    @{
+        Employee employee = ViewData["employee2"] as Employee;
+    }
+    Employee Id: @employee.Id*@
+
+<h3>TempData</h3>
+Message:@ViewBag.Message
+@Html.ActionLink("Go to Index3", "Index3")
