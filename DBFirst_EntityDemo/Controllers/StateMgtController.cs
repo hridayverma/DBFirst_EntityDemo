@@ -26,11 +26,11 @@ namespace DBFirst_EntityDemo.Controllers
         public ActionResult Index2()
         {
             //Retreiving Data from TempData on second Request
-            ViewBag.Message = TempData["Message"];
+            //ViewBag.Message = TempData["Message"];
+            ViewBag.Message = TempData.Peek("Message");
             //TempData.Keep("Message");
             return View();
         }
-
         public ActionResult Index3()
         {
             //Retreiving Data from TempData on Third Request

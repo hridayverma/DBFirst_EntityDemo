@@ -11,7 +11,6 @@ namespace DBFirst_EntityDemo.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Course
     {
@@ -21,7 +20,6 @@ namespace DBFirst_EntityDemo.Models
             this.Students = new HashSet<Student>();
         }
     
-        [Display(Name ="Course")]
         public int CourseId { get; set; }
         public string CourseName { get; set; }
         public string Location { get; set; }

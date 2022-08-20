@@ -17,8 +17,16 @@ namespace DBFirst_EntityDemo.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var students = db.Students.Include(s => s.Course).Include(s => s.Standard);
-            return View(students.ToList());
+            //check for cookies
+            if (Request.Cookies["PGDAC"] != null) {
+
+                ViewBag.UserName = Request.Cookies["PGDAC"]["username"];
+                ViewBag.LoginTime = Request.Cookies["PGDAC"]["logintime"];
+                var students = db.Students.Include(s => s.Course).Include(s => s.Standard);
+                return View(students.ToList());
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         // GET: Students/Details/5

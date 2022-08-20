@@ -6,6 +6,9 @@
 
 <h2>Index</h2>
 
+Welcome:<span>@ViewBag.UserName 
+              @Html.ActionLink("Sign Out", "SignOut","Account") </span >
+Login Time:<span>@ViewBag.LoginTime</span>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -29,29 +32,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.StudentId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Course.CourseName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Standard.StandardName)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
-    </td>    
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Standard.StandardName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+            </td>
+        </tr>
+    }
 
 </table>

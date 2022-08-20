@@ -11,7 +11,6 @@ namespace DBFirst_EntityDemo.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Student
     {
@@ -22,24 +21,12 @@ namespace DBFirst_EntityDemo.Models
         }
     
         public int StudentId { get; set; }
-        [Display(Name = "First Name")]
-        [MinLength(6,ErrorMessage ="First name must be of min 6 chars")]
-        [Required(ErrorMessage ="First Name is Manadory")]
         public string FirstName { get; set; }
-        [Display(Name = "Last Name")]
-        [Required(ErrorMessage = "Last Name is Manadory")]
-
         public string LastName { get; set; }
-        
-        [Display(Name ="Standard")]
         public Nullable<int> StandardId { get; set; }
-        [Display(Name = "Course")]
         public Nullable<int> CourseId { get; set; }
-
-        //[]
-        //[Display(Name = "Course")]
+    
         public virtual Course Course { get; set; }
-        //[Display(Name = "Standard")]
         public virtual Standard Standard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentAddress> StudentAddresses { get; set; }
