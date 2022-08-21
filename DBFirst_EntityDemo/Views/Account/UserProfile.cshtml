@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<h2>UserProfile</h2>
+<hr />
+Welcome:<span>
+    @ViewBag.UserName
+    @Html.ActionLink("Sign Out", "SignOut", "Account")
+</span>
+Login Time:<span>@ViewBag.LoginTime</span>
+
+Total Visitors:<span>@ViewBag.Visitor</span>
+
+@using (Html.BeginForm()) {
+
+    <input type="submit" value="Edit Profile" class="btn btn-primary" />
+}

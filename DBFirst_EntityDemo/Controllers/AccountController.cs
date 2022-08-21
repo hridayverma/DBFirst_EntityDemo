@@ -25,13 +25,21 @@ namespace DBFirst_EntityDemo.Controllers
                                   (u=>u.Username==login.Username && u.Password==login.Password);
                 if (isValidUser)
                 {
+                    /*
                     //cookie creation
                     HttpCookie ht = new HttpCookie("PGDAC");
                     ht.Values.Add("username", login.Username);
                     ht.Values.Add("logintime", DateTime.Now.ToString());
                     //ht.Expires = DateTime.Now.AddHours(1);
                     Response.Cookies.Add(ht);
+                    
                     return RedirectToAction("Index", "Students");
+                    */
+                    //using session
+                    Session["UserName"] = login.Username;
+                    Session["LoginTime"] = DateTime.Now;
+                    return RedirectToAction("UserProfile");
+
                 }
                 else
                 {
@@ -64,11 +72,42 @@ namespace DBFirst_EntityDemo.Controllers
         //for SignOut/Logout
         public ActionResult SignOut()
         {
+            /*
             HttpCookie ht = Request.Cookies["PGDAC"];
             ht.Expires = DateTime.Now.AddMilliseconds(-1);
             Response.Cookies.Add(ht);
+            */
             //return View("Login");
+            Session.Abandon();//to reset current session
             return RedirectToAction("Login");
+        }
+
+
+        //UserProfile
+        public ActionResult UserProfile()
+        {
+
+            //check whether session is current or new session
+            if (Session.IsNewSession) {
+
+                return View("SessionExpire");
+            }
+            //Checking and Retreiving Session Data
+            if (Session["UserName"] != null)
+            {
+                ViewBag.UserName = Session["UserName"];
+                ViewBag.LoginTime = Session["LoginTime"];
+                ViewBag.Visitor = HttpContext.Application["TotalVisitor"];
+                return View();
+            }
+
+            return RedirectToAction("Login");
+        }
+
+        //session expire view
+        public ViewResult SessionExpire()
+        {
+            return View();
         }
 
 
